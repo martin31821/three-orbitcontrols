@@ -1,5 +1,5 @@
 {
-  "name": "three-orbitcontrols-ts",
+  "name": "three-orbitcontrols-ts-port",
   "version": "2.102.1",
   "description": "is the three.js OrbitControls from official repo examples, ported to typescript and stripped down",
   "main": "build/index.js",
