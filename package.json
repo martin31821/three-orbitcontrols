@@ -1,18 +1,19 @@
 {
-  "name": "three-orbitcontrols",
+  "name": "three-orbitcontrols-ts",
   "version": "2.102.1",
-  "description": "is the three.js OrbitControls from official repo examples",
-  "main": "OrbitControls.js",
+  "description": "is the three.js OrbitControls from official repo examples, ported to typescript and stripped down",
+  "main": "build/index.js",
   "scripts": {
-    "deploy": "npm version patch",
-    "predeploy": "npm test",
-    "postversion": "git push origin v${npm_package_version}; npm publish; git push origin master",
-    "test": "node test"
+    "build": "tsc",
+    "lint": "tslint -p ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fibo/three-orbitcontrols.git"
+    "url": "git+https://github.com/martin31821/three-orbitcontrols.git"
   },
+  "files": [
+    "build/**/*"
+  ],
   "keywords": [
     "three",
     "three.js",
@@ -21,15 +22,20 @@
     "controls"
   ],
   "author": {
-    "name": "Gianluca Casati",
-    "url": "http://g14n.info"
+    "name": "Martin Koppehel",
+    "url": "https://embedded.enterprises"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fibo/three-orbitcontrols/issues"
+    "url": "https://github.com/martin31821/three-orbitcontrols/issues"
   },
-  "homepage": "http://g14n.info/three-orbitcontrols",
   "peerDependencies": {
+    "three": ">= 0.102.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.4.5",
     "three": ">= 0.102.0"
   }
 }
