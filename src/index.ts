@@ -1,1 +1,1 @@
-export { OrbitControls } from './orbit';
+export { OrbitControls, STATE, EPS } from './orbit';

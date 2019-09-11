@@ -16,8 +16,16 @@ import {
 //    Orbit - left mouse / touch: one-finger move
 //    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
 //    Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move
-const STATE = { NONE: - 1, ROTATE: 0, DOLLY: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_DOLLY_PAN: 4 };
-const EPS = 0.000001;
+export const STATE = {
+  NONE: -1,
+  ROTATE: 0,
+  DOLLY: 1,
+  PAN: 2,
+  TOUCH_ROTATE: 3,
+  TOUCH_DOLLY_PAN: 4,
+};
+
+export const EPS = 0.000001;
 
 export class OrbitControls extends EventDispatcher {
   public enabled = true;
@@ -52,8 +60,20 @@ export class OrbitControls extends EventDispatcher {
   private changeEvent = { type: 'change' };
   private startEvent = { type: 'start' };
   private endEvent = { type: 'end' };
+  private stateCache = STATE.NONE;
 
-  private state = STATE.NONE;
+  public get state() {
+    return this.stateCache;
+  }
+  public set state(value: typeof STATE.NONE) {
+    const oldState = this.stateCache;
+    this.stateCache = value;
+    if (this.stateChange) {
+      this.stateChange(oldState, value);
+    }
+  }
+
+  public stateChange?: ((from: number, to: number) => void);
   private spherical = new Spherical();
   private sphericalDelta = new Spherical();
 
